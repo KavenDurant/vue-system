@@ -20,6 +20,8 @@ jobs:
         run: npm install
         
       - name: Build
+        env:
+          NODE_OPTIONS: --experimental-global-webcrypto
         run: npm run build
         
       - name: Login to Docker Hub
