@@ -173,7 +173,7 @@ function onSubmit(e: Event) {
       isSuccess.value = true
       // 成功后 1 秒跳转
       setTimeout(() => {
-        router.push('/about')
+        router.push('/layouts')
       }, 1000)
     }, 2000)
   }
