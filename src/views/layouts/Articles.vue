@@ -94,8 +94,8 @@ const fetchArticles = async () => {
   loading.value = true
   try {
     const res = await getArticles()
-    originalArticles.value = res.articles
-    articles.value = res.articles
+    originalArticles.value = res as Article[]
+    articles.value = res as Article[]
   } catch (error) {
     message.error('获取文章列表失败')
   } finally {

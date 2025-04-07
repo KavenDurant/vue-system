@@ -3,7 +3,7 @@ import axios from 'axios'
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { message } from 'ant-design-vue'
 
-interface ApiResponse<T = never> {
+interface ApiResponse<T = any> {
   code: number
   status: boolean
   data: T
@@ -58,18 +58,19 @@ axiosInstance.interceptors.request.use(
 
 // 响应拦截器：响应返回后关闭 loading，并统一处理返回数据
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse<ApiResponse>) => {
+  <T>(response: AxiosResponse<ApiResponse<T>>): Promise<T> => {
     endLoading()
     const res = response.data
     if (res.code === 200 && res.status) {
-      return res.data
+      return Promise.resolve(res.data as T)
     } else {
-      // 若接口返回错误信息，可在此处统一处理，如全局错误提示等
+      message.error(res.message || '请求失败')
       return Promise.reject(res)
     }
   },
   (error) => {
     endLoading()
+    message.error(error?.message || '网络错误')
     return Promise.reject(error)
   },
 )
