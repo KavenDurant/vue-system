@@ -62,7 +62,7 @@ axiosInstance.interceptors.response.use(
     endLoading()
     const res = response.data
     if (res.code === 200 && res.status) {
-      return Promise.resolve(res.data as T)
+      return Promise.resolve(res as T)
     } else {
       message.error(res.message || '请求失败')
       return Promise.reject(res)

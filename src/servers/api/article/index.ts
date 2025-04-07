@@ -1,8 +1,8 @@
 import axiosInstance from '@/servers/http'
 import type { Article, CreateArticleDto, UpdateArticleDto } from './types'
 
-export function getArticles(): Promise<Article[]> {
-  return axiosInstance.get<Article[]>('/admin/article').then(response => response.data)
+export function getArticles() {
+  return axiosInstance.get('/admin/article')
 }
 
 export function createArticle(data: CreateArticleDto) {
