@@ -88,8 +88,8 @@ const columns = [
 
 // 数据相关
 const loading = ref(false)
-const articles = ref<Article[]>([])
-const originalArticles = ref<Article[]>([])
+const articles = ref([])
+const originalArticles = ref([])
 const fetchArticles = async () => {
   loading.value = true
   try {
